@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White's Day Surprise</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe6f2, #e6f7ff);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .main-page {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: clamp(28px, 5vw, 40px);
+        }
+        .items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff69b4;
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+        /* LOVE POPUP */
+        .love-popup {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+            flex-direction: column;
+        }
+
+        .love-popup img {
+            width: 600px;
+            max-width: 90%;
+            border-radius: 20px;
+        }
+        .popup h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff69b4;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        #yes-btn {
+            background: #ff69b4;
+            color: white;
+        }
+
+        #no-btn {
+            background: #ccc;
+            color: #333;
+        }
+
+        .main-page {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }
+
+        .note {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+            font-size: 18px;
+            line-height: 1.6;
+            animation: floatNote 4s ease-in-out infinite;
+        }
+
+        @keyframes floatNote {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            animation: confetti-fall 5s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="floating-hearts" id="hearts"></div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2>Will you be my White's Day? 💖</h2>
+        <div class="buttons">
+            <button id="yes-btn">Yes</button>
+            <button id="no-btn">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP LOVE GIF -->
+<div class="love-popup" id="love-popup">
+    <img src="assets/love sticker.gif" alt="Love Sticker">
+    <br><br>
+    <button id="continue-btn">Continue 🤍</button>
+</div>
+
+<div class="main-page" id="main-page">
+    <h1>Happy White's Day! 🤍</h1>
+    
+    <div class="items">
+        <div class="item">
+            <img src="assets/Cat Hug Sticker by Bichi Mao.gif" style="object-fit: contain; width: 150px; height: 150px;">
+        </div>
+        <div class="item">
+            <img src="assets/buket.png" style="object-fit: contain; width: 150px; height: 150px;">
+        </div>
+    </div>
+
+<div class="note">
+    <!-- <p>Happy White’s Day buat kamu yang lagi jalan sendiri.</p>
+    <p>Hari ini bukan soal punya pasangan, tapi soal tetap menghargai diri sendiri dan semua hal kecil yang bikin hidup terasa hangat.</p>
+    <p>Nikmati hari ini dengan cara kamu sendiri, karena kamu juga pantas dirayakan 🤍</p> -->
+
+    <p>Happy White’s Day 🤍</p>
+    <p>Buat kamu yang punya pasangan, semoga hubungan kalian selalu dipenuhi hal-hal kecil yang bikin hangat dan saling menguatkan.</p>
+    <p>Buat kamu yang masih sendiri, semoga hari ini tetap terasa spesial dengan cara kamu sendiri dan penuh hal baik.</p>
+    <p>Karena pada akhirnya, setiap orang tetap pantas merasa dihargai dan dirayakan.</p>
+
+</div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" src="assets/Stephanie Poetri - I Love You 3000 (Lyrics).mp3" loop autoplay></audio>
+</div>
+
+<div class="confetti" id="confetti"></div>
+
+
+<script>
+function createHearts() {
+    const heartsContainer = document.getElementById('hearts');
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 6 + 's';
+        heartsContainer.appendChild(heart);
+    }
+}
+
+function createConfetti() {
+    const confettiContainer = document.getElementById('confetti');
+    for (let i = 0; i < 50; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + '%';
+        piece.style.animationDelay = Math.random() * 5 + 's';
+        confettiContainer.appendChild(piece);
+    }
+}
+
+const popup = document.getElementById('popup');
+const lovePopup = document.getElementById('love-popup');
+const continueBtn = document.getElementById('continue-btn');
+const mainPage = document.getElementById('main-page');
+const yesBtn = document.getElementById('yes-btn');
+const noBtn = document.getElementById('no-btn');
+const bgMusic = document.getElementById('bg-music');
+
+let yesSize = 1;
+
+noBtn.addEventListener('click', () => {
+    yesSize += 0.5;
+    yesBtn.style.transform = `scale(${yesSize})`;
+});
+
+yesBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+    lovePopup.style.display = 'flex'; // tampilkan popup gif
+});
+
+continueBtn.addEventListener('click', () => {
+    lovePopup.style.display = 'none';
+    mainPage.style.display = 'block';
+    createConfetti();
+    bgMusic.play();
+});
+
+window.onload = createHearts;
+</script>
+</body>
+</html>
